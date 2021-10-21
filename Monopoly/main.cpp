@@ -17,8 +17,7 @@ int main()
     joueur joueur1;
     lancer des;
 
-    menu_debut(joueur1);
-    saisie_joueur(joueur1);
+    menu_debut(joueur1, des);
     affichage_joueur(joueur1, des);
         return 0;
 }
