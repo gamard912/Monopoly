@@ -42,6 +42,10 @@ joueur position(joueur player, lancer des_joueur)
         position = (pre_position + somme_des)-40;
         argent += 200;
     }
+    if(position == 1)
+    {
+        argent += 400;
+    }
 
     player.argent = argent;
     player.position = position;
@@ -114,7 +118,7 @@ void game_master(joueur player, lancer des_joueur, joueur bot1, lancer des_bot1,
         {
             Affichage_joueur(player, des_joueur);
             Affichage_bot1(bot1, des_bot1);
-//            Affichage_bot2(bot2, des_bot2);
+            Affichage_bot2(bot2, des_bot2);
         }
 
     }else if(recup_choix_debut == 'r')

@@ -30,6 +30,10 @@ joueur position_bot2(joueur bot2, lancer des_bot2)
         position_bot2 = (pre_position_bot2 + somme_des_bot2)-40;
         argent_bot2 += 200;
     }
+    if(position_bot2 == 1)
+    {
+        argent_bot2 += 400;
+    }
 
     bot2.argent = argent_bot2;
     bot2.position = position_bot2;
