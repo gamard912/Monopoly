@@ -16,13 +16,23 @@ int main()
 
     srand(time(NULL));
 
-    for(int i = 0; i<20; i++)
+    char recup_choix_debut = menu_debut();
+
+    if(recup_choix_debut == 'l')
     {
-        Affichage_joueur(player, des_joueur);
-        Affichage_bot1(bot1, des_bot1);
-        Affichage_bot2(bot2, des_bot2);
+        for(int i = 0; i<20; i++)
+        {
+            Affichage_joueur(player, des_joueur);
+            Affichage_bot1(bot1, des_bot1);
+            Affichage_bot2(bot2, des_bot2);
+        }
+
+    }else if(recup_choix_debut == 'r')
+    {
+        affichage_regles();
+        main();
+    }else{
+        main();
     }
-
-
     return 0;
 }

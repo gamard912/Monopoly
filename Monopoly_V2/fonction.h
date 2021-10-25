@@ -22,7 +22,8 @@ lancer des_du_bot2(lancer des_bot2);
 int position_bot2(lancer des_bot2);
 
 // ******************************* fonction generale *************************************
-
+char menu_debut();
+void affichage_regles();
 int quitter();
 
 #endif // FONCTION_H
