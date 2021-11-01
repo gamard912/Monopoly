@@ -15,6 +15,6 @@ typedef struct{
 
 } lancer ;
 
-
+// commentaire de test
 
 #endif // STRUCT_H
