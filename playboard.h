@@ -4,7 +4,7 @@
 
 void print_playboard(joueur, joueur, joueur);
 
-void print_playerPosition(joueur);
+void print_playerPosition(joueur,int);
 
 void print_grid(void);
 

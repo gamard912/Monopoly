@@ -5,34 +5,34 @@
 using namespace std;
 
 void print_playboard(joueur player, joueur bot1, joueur bot2){
-    print_playerPosition(player);
-    print_playerPosition(bot1);
-    print_playerPosition(bot2);
+    print_playerPosition(player,0);
+    print_playerPosition(bot1,1);
+    print_playerPosition(bot2,2);
     cout << endl;
     print_grid();
     cout << endl;
 }
 
-void print_playerPosition(joueur player){
-    static unsigned short int playerIndex=0;
+void print_playerPosition(joueur player, int playerIndex){
     for (int i=0;i<40;i++){
         cout << " ";
         if (i==player.position){
             switch (playerIndex){
                 case 0:
-                cout << "J ";
-                break;
-
-            case 1:
-                cout << "B1";
-            case 2:
-                cout << "B2";
+                    cout << "J ";
+                    playerIndex+=1;
+                    break;
+                case 1:
+                    cout << "B1";
+                    playerIndex+=1;
+                    break;
+                case 2:
+                    cout << "B2";
+                    playerIndex+=1;
+                    break;
             }
         }
         else{cout<<"   ";}
-    }
-    if(playerIndex==2){
-        playerIndex=0;
     }
     cout << endl;
 }

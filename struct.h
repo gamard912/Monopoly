@@ -4,7 +4,7 @@
 typedef struct{
 
     int argent = 1500;
-    int position;  // case de depart
+    int position = 0;  // case de depart
 
 }joueur;
 
