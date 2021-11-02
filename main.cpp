@@ -1,6 +1,7 @@
 #include <iostream>
 #include "fonction.h"
 #include "struct.h"
+#include "playboard.h"
 
 using namespace std;
 
