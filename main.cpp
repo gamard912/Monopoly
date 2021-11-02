@@ -2,6 +2,7 @@
 #include "fonction.h"
 #include "struct.h"
 #include "playboard.h"
+#include "time.h"
 
 using namespace std;
 

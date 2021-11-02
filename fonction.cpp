@@ -5,6 +5,7 @@
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "playboard.h"
 
 using namespace std;
 
@@ -92,7 +93,7 @@ void Affichage_joueur(joueur player,lancer des_joueur)
 char menu_debut()
 {
     char choix_debut = 0;
-    cout << "Bienvenue sur le Monopoly by Ezion & Zoubir" << endl;
+    cout << "Bienvenue sur le Monopoly by Ezio & Zoubir" << endl;
     cout << "Pour lancer la partie tapez 'l' et pour afficher les regles 'r'" << endl;
     cin >> choix_debut;
 
@@ -103,7 +104,7 @@ void affichage_regles()
 {
     cout << endl;
     cout << "La partie commence avec 1500e chacun" << endl;
-    cout << "Pour quittez clicker sur la croix " << endl;
+    cout << "Pour quittez cliquez sur la croix " << endl;
     cout << "il a deux bot " << endl;
     cout << "pour gagnez la partie les deux bots ne doivent plus avoir d'argent" << endl<< endl;
 }
@@ -116,6 +117,7 @@ void game_master(joueur player, lancer des_joueur, joueur bot1, lancer des_bot1,
     {
         for(int i = 0; i<20; i++)
         {
+            print_playboard(player, bot1, bot2);
             Affichage_joueur(player, des_joueur);
             Affichage_bot1(bot1, des_bot1);
             Affichage_bot2(bot2, des_bot2);
