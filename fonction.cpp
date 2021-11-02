@@ -34,7 +34,7 @@ joueur position(joueur player, lancer des_joueur)
     int somme_des = 0;
 
     somme_des =  des_joueur.des1 + des_joueur.des2;
-    position += somme_des;                                  // on calcul la position en fonction des dés et de la position précedentes
+    position += somme_des;                                  // on calcule la position en fonction des dés et de la position précedentes
     pre_position = position - somme_des;
 
     if(position > 40)
