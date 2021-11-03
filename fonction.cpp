@@ -53,7 +53,7 @@ joueur position(joueur player, lancer des_joueur)
     return player;                                        //on retourne la position
 }
 
-joueur Nouvelle_position_joueur(joueur player, lancer des_joueur)
+int Nouvelle_position_joueur(joueur player, lancer des_joueur)
 {
     des_joueur = des_du_joueur(des_joueur);                 //on recupere la valeur des dés
     player = position(player, des_joueur);              // on stock la position afin de l'afficher
@@ -62,7 +62,7 @@ joueur Nouvelle_position_joueur(joueur player, lancer des_joueur)
     cout << "Vous avez fait : " << des_joueur.des1 << " et " << des_joueur.des2 << endl;
     cout << "Vous passer a la case : " << player.position << endl;
     cout << "Vous avez maintenant : " << player.argent << "e "<< endl;
-    return player;
+    return player.position;
 
 }
 joueur Affichage_joueur(joueur player,lancer des_joueur)
@@ -82,7 +82,7 @@ joueur Affichage_joueur(joueur player,lancer des_joueur)
     recup_saisie = saisie_joueur();
     if(recup_saisie == 'l')
     {
-        Nouvelle_position_joueur(player, des_joueur);
+        player.position=Nouvelle_position_joueur(player, des_joueur);
     }else if(recup_saisie == 's')
     {
         cout << "erreur lors de la saisie "<< endl;
