@@ -8,4 +8,6 @@ void print_playerPosition(joueur,int);
 
 void print_grid(void);
 
+void setColor(int,int);
+
 #endif // PLAYBOARD_H
