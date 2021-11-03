@@ -53,7 +53,7 @@ joueur position(joueur player, lancer des_joueur)
     return player;                                        //on retourne la position
 }
 
-void Nouvelle_position_joueur(joueur player, lancer des_joueur)
+joueur Nouvelle_position_joueur(joueur player, lancer des_joueur)
 {
     des_joueur = des_du_joueur(des_joueur);                 //on recupere la valeur des dés
     player = position(player, des_joueur);              // on stock la position afin de l'afficher
@@ -62,9 +62,10 @@ void Nouvelle_position_joueur(joueur player, lancer des_joueur)
     cout << "Vous avez fait : " << des_joueur.des1 << " et " << des_joueur.des2 << endl;
     cout << "Vous passer a la case : " << player.position << endl;
     cout << "Vous avez maintenant : " << player.argent << "e "<< endl;
+    return player;
 
 }
-void Affichage_joueur(joueur player,lancer des_joueur)
+joueur Affichage_joueur(joueur player,lancer des_joueur)
 {
     // création de variable afin de recuperer la saisie du joueur et sa position pour le prochain tour
     char recup_saisie = 0;
@@ -86,6 +87,7 @@ void Affichage_joueur(joueur player,lancer des_joueur)
     {
         cout << "erreur lors de la saisie "<< endl;
     }
+    return player;
 }
 
 
@@ -118,9 +120,10 @@ void game_master(joueur player, lancer des_joueur, joueur bot1, lancer des_bot1,
         for(int i = 0; i<20; i++)
         {
             print_playboard(player, bot1, bot2);
-            Affichage_joueur(player, des_joueur);
-            Affichage_bot1(bot1, des_bot1);
-            Affichage_bot2(bot2, des_bot2);
+            player=Affichage_joueur(player, des_joueur);
+            print_playboard(player, bot1, bot2);
+            bot1=Affichage_bot1(bot1, des_bot1);
+            bot2=Affichage_bot2(bot2, des_bot2);
         }
 
     }else if(recup_choix_debut == 'r')

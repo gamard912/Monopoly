@@ -39,7 +39,7 @@ joueur position_bot2(joueur bot2, lancer des_bot2)
     bot2.position = position_bot2;
     return bot2;
 }
-void Affichage_bot2(joueur bot2, lancer des_bot2)
+joueur Affichage_bot2(joueur bot2, lancer des_bot2)
 {
     bot2 = position_bot2(bot2, des_bot2);
     cout << "*******************************BOT 2**********************************" <<endl;
@@ -53,5 +53,5 @@ void Affichage_bot2(joueur bot2, lancer des_bot2)
     cout << "il a fait : " << des_bot2.des1 << " et " << des_bot2.des2 << endl;
     cout << "il passe a la case : " << bot2.position << endl;
     cout << "il passe a : " << bot2.argent << endl;
-
+    return bot2;
 }

@@ -20,15 +20,12 @@ void print_playerPosition(joueur player, int playerIndex){
             switch (playerIndex){
                 case 0:
                     cout << "J ";
-                    playerIndex+=1;
                     break;
                 case 1:
                     cout << "B1";
-                    playerIndex+=1;
                     break;
                 case 2:
                     cout << "B2";
-                    playerIndex+=1;
                     break;
             }
         }

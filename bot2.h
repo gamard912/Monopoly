@@ -4,7 +4,7 @@
 
 // ******************************* Tout ce qui concerne le bot2 *************************************
 
-void Affichage_bot2(joueur bot2, lancer des_bot2);
+joueur Affichage_bot2(joueur bot2, lancer des_bot2);
 lancer des_du_bot2(lancer des_bot2);
 int position_bot2(lancer des_bot2);
 
