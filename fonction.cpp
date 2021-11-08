@@ -29,27 +29,33 @@ lancer des_du_joueur(lancer des_joueur)
 
 joueur position(joueur player, lancer des_joueur)
 {
+
     static int position = 0;                                //on crée une variable en static afin qu'elle ne soit pas redefinie a 0
     static int argent = 1500;
+    static int tours_joueur = 0;
     static unsigned int pre_position = 0;
     int somme_des = 0;
 
     somme_des =  des_joueur.des1 + des_joueur.des2;
     position += somme_des;                                  // on calcule la position en fonction des dés et de la position précedentes
     pre_position = position - somme_des;
+    tours_joueur = player.tours_de_plateau;
 
     if(position > 40)
     {
         position = (pre_position + somme_des)-40;
         argent += 200;
+        tours_joueur++;
     }
-    if(position == 1)
+    if(position == 0 && tours_joueur != 0)
     {
         argent += 400;
     }
 
     player.argent = argent;
     player.position = position;
+    player.tours_de_plateau = tours_joueur;
+
     return player;                                        //on retourne la position
 }
 
