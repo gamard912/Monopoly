@@ -13,6 +13,7 @@ SOURCES += \
 HEADERS += \
     bot1.h \
     bot2.h \
+    color.h \
     fonction.h \
     playboard.h \
     struct.h
