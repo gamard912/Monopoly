@@ -6,6 +6,7 @@
 using namespace std;
 
 void print_playboard(joueur player, joueur bot1, joueur bot2){
+    cout << "******************************* PLATEAU DE JEU **********************************"<<endl;
     print_playerPosition(player,0);
     print_playerPosition(bot1,1);
     print_playerPosition(bot2,2);
@@ -44,14 +45,15 @@ void print_grid(){
                                     {'R',32,'M',32,32,'L',32,'K',32,32,'L',32,'C',32,32,'L',32,'M',32,32,'E',32,'K',32,32,'L',32,32,'E',32,'T',32,32,'M',32,'L','K',32,32,32},
                                     {'T',32,'U',32,32,' ',32,' ',32,32,' ',32,' ',32,32,' ',32,'U',32,32,' ',32,' ',32,32,' ',32,32,'R',32,'O',32,32,'U',32,' ',' ',32,32,32}};
     //Definition of cases color
-    const int gridColors[40]=       { 2 , 8, 3 , 8, 6, 15 ,11, 5 ,11,11, 8 , 5, 3 , 5, 5, 15 ,10, 3 ,10,10, 6 , 4, 5 , 4, 4, 15 ,14,14, 0 ,14, 1 , 6, 6, 3 , 6, 15 , 5 , 1,14, 1};
+    const int gridColors[2][40]={   { 1 , 2, 6 , 2, 0, 0 , 0, 5 , 0, 0, 3 , 0, 0 , 0, 0, 0 , 0, 6 , 0, 0, 1 , 0, 5 , 0, 0, 0 , 3, 3, 4 , 3, 4 , 0, 0, 0 , 0, 0 , 7 , 0, 0, 0},//txt color
+                                    { 7 , 7, 0 , 7, 0, 7 , 6, 0 , 6, 6, 0 , 5, 0 , 5, 5, 7 , 3, 0 , 3, 3, 7 , 1, 0 , 1, 1, 7 , 0, 0, 0 , 0, 1 , 2, 2, 0 , 2, 7 , 0 , 4, 4, 4}};//Background color
 
     //Printing of the grid
     for (int lines=0; lines<5; lines++){
         for(int i=0; i<40; i++){
-            setColor(gridColors[i],0);
+            setColor(gridColors[0][i],gridColors[1][i]);
             cout << " " << gridNames[lines][i] << " ";
-            setColor(15,0);
+            setColor(9,9);
             if (i<39){
                 cout << "|";
             }

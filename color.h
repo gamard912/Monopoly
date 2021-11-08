@@ -15,6 +15,7 @@
 #define CLOSER "m"
 #define TXT_DEFAULT "\033[39m"
 #define BACKG_DEFAULT "\033[49m"
+
 #define TXT_BLACK "\033[30m" //Black
 #define TXT_RED "\033[31m" //Red
 #define TXT_GREEN "\033[32m" //Green
