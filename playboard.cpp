@@ -1,7 +1,7 @@
 #include "playboard.h"
 #include <iostream>
 #include "struct.h"
-#include <windows.h>
+#include "color.h"
 
 using namespace std;
 
@@ -44,7 +44,7 @@ void print_grid(){
                                     {'R',32,'M',32,32,'L',32,'K',32,32,'L',32,'C',32,32,'L',32,'M',32,32,'E',32,'K',32,32,'L',32,32,'E',32,'T',32,32,'M',32,'L','K',32,32,32},
                                     {'T',32,'U',32,32,' ',32,' ',32,32,' ',32,' ',32,32,' ',32,'U',32,32,' ',32,' ',32,32,' ',32,32,'R',32,'O',32,32,'U',32,' ',' ',32,32,32}};
     //Definition of cases color
-    const int gridColors[40]=       { 6 , 8, 3 , 8, 6, 15 ,11, 5 ,11,11, 8 , 5, 3 , 5, 5, 15 ,10, 3 ,10,10, 6 , 4, 5 , 4, 4, 15 ,14,14, 0 ,14, 1 , 6, 6, 3 , 6, 15 , 5 , 1,14, 1};
+    const int gridColors[40]=       { 2 , 8, 3 , 8, 6, 15 ,11, 5 ,11,11, 8 , 5, 3 , 5, 5, 15 ,10, 3 ,10,10, 6 , 4, 5 , 4, 4, 15 ,14,14, 0 ,14, 1 , 6, 6, 3 , 6, 15 , 5 , 1,14, 1};
 
     //Printing of the grid
     for (int lines=0; lines<5; lines++){
@@ -61,9 +61,19 @@ void print_grid(){
 }
 
 void setColor(int txtColor, int backgColor){ //Function to set the next cout color
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),txtColor/*16+backgColor*/);
-    //NB : 0-Black, 1-Dark Blue, 2-Dark Green, 3-Turquoise, 4-Dark Red, 5-Purple, 6-Green Goose Poop, 7-Light Gray, 8-Dark Gray, 9-Light Blue, 10-Light Green, 11-Turquoise
-    //12-Light Red, 13-Purple 2, 14-Yellow, 15-White
-
+    const unsigned short int colorLimit=7;
+    //NB : 0-Black, 1-Red, 2-Green, 3-Yellow, 4-Blue, 5-Magenta, 6-Cyan, 7-White, 9-Reset
+    if (txtColor>colorLimit && backgColor>colorLimit){
+        cout << ALL_RESET;
+    }
+    else if (txtColor>colorLimit && backgColor<colorLimit){
+        cout << TXT_DEFAULT;
+    }
+    else if (backgColor>colorLimit && txtColor<colorLimit){
+        cout << BACKG_DEFAULT;
+    }
+    else{
+        cout << IDENT << txtColor+30 <<CLOSER<<IDENT<<backgColor+40<<CLOSER;
+    }
 }
 
