@@ -62,7 +62,7 @@ void print_grid(){
 
 void setColor(int txtColor, int backgColor){ //Function to set the next cout color
     const unsigned short int colorLimit=7;
-    //NB : 0-Black, 1-Red, 2-Green, 3-Yellow, 4-Blue, 5-Magenta, 6-Cyan, 7-White, 9-Reset
+    //NB : 0-Black, 1-Red, 2-Green, 3-Orange, 4-Blue, 5-Magenta, 6-Cyan, 7-White, 9-Reset
     if (txtColor>colorLimit && backgColor>colorLimit){
         cout << ALL_RESET;
     }
