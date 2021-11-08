@@ -29,6 +29,4 @@ typedef struct{
 
 }property;
 
-// commentaire de test
-
 #endif // STRUCT_H
