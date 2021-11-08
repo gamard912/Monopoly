@@ -1,5 +1,8 @@
 #ifndef STRUCT_H
 #define STRUCT_H
+#include <string>
+
+using namespace std;
 
 typedef struct{
 
@@ -15,6 +18,16 @@ typedef struct{
     int des2 =0;
 
 } lancer ;
+
+typedef struct{
+
+    int rent;
+    int price;
+    string name;
+    int position;
+    bool buy;
+
+}property;
 
 // commentaire de test
 
