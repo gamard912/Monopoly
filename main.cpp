@@ -17,9 +17,11 @@ int main()
     lancer des_bot1;
     lancer des_bot2;
 
+    allProperties estate;
+
     srand(time(NULL));
 
-    game_master(player, des_joueur, bot1, des_bot1, bot2, des_bot2);
+    game_master(player, des_joueur, bot1, des_bot1, bot2, des_bot2, estate);
 
     return 0;
 }
