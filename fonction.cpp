@@ -14,6 +14,11 @@ using namespace std;
 
 
 // *********************************** fonction generale *************************************
+void clear_screen()
+{
+    cout << "\x1B[2J\x1B[H" << "\n";
+}
+
 char saisie_menu_debut()
 {
     char choix_debut = 0;
@@ -67,4 +72,5 @@ void setup_screen()
 {
     cout << "\e[8;150;400t";
 }
+
 
