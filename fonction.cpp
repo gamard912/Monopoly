@@ -41,7 +41,7 @@ void affichage_regles()
 
 void game_master(joueur player, lancer des_joueur, joueur bot1, lancer des_bot1, joueur bot2, lancer des_bot2, allProperties estate)
 {
-    //define_realEstate(estate);
+    estate=define_realEstate(estate);
     char recup_choix_debut = saisie_menu_debut();
 
     if(recup_choix_debut == 'l')

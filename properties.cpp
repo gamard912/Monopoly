@@ -2,46 +2,47 @@
 #include <iostream>
 #include "struct.h"
 
-void define_realEstate(allProperties estate){
+allProperties define_realEstate(allProperties estate){
     for (int i=1; i<11; i++){
         switch (i) {
             case 1:
-                define_propGrp(estate.propGrp1,i);
+                estate.propGrp1=define_propGrp(estate.propGrp1,i);
             break;
             case 2:
-                define_propGrp(estate.propGrp2,i);
+                estate.propGrp2=define_propGrp(estate.propGrp2,i);
             break;
             case 3:
-                define_propGrp(estate.propGrp3,i);
+                estate.propGrp3=define_propGrp(estate.propGrp3,i);
             break;
             case 4:
-                define_propGrp(estate.propGrp4,i);
+                estate.propGrp4=define_propGrp(estate.propGrp4,i);
             break;
             case 5:
-                define_propGrp(estate.propGrp5,i);
+                estate.propGrp5=define_propGrp(estate.propGrp5,i);
             break;
             case 6:
-                define_propGrp(estate.propGrp6,i);
+                estate.propGrp6=define_propGrp(estate.propGrp6,i);
             break;
             case 7:
-                define_propGrp(estate.propGrp7,i);
+                estate.propGrp7=define_propGrp(estate.propGrp7,i);
             break;
             case 8:
-                define_propGrp(estate.propGrp8,i);
+                estate.propGrp8=define_propGrp(estate.propGrp8,i);
             break;
             case 9:
-                define_propGrp(estate.propGrpStations,i);
+                estate.propGrpStations=define_propGrp(estate.propGrpStations,i);
             break;
             case 10:
-                define_propGrp(estate.propGrpCompanies,i);
+                estate.propGrpCompanies=define_propGrp(estate.propGrpCompanies,i);
             break;
             case 11:
-                define_propGrp(estate.propGrpTaxes,i);
+                estate.propGrpTaxes=define_propGrp(estate.propGrpTaxes,i);
             break;
         }
     }
+    return estate;
 }
-void define_propGrp(propertiesGrp propGrp, unsigned short int grpNumber){
+propertiesGrp define_propGrp(propertiesGrp propGrp, unsigned short int grpNumber){
     static unsigned int position=0;
     static unsigned int j=0;
     for (int i=0;i<propPerGrp[grpNumber-1];i++){
@@ -103,6 +104,7 @@ void define_propGrp(propertiesGrp propGrp, unsigned short int grpNumber){
             j++;
         }
     }
+    return propGrp;
 }
 
 unsigned int calcul_propPosition(unsigned int position, unsigned int j){

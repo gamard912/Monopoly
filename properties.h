@@ -15,9 +15,9 @@ const string estateTags[30]={"Boulevard de Belleville","Rue Lecourbe","Rue de Va
 const int propPerGrp[11]={2,3,3,3,3,3,3,2,4,2,2};
 const unsigned int estatePositions[30]={1,3,6,8,9,11,13,14,16,18,19,21,23,24,26,27,29,31,32,34,37,39,5,15,25,35,12,28,2,38};
 
-void define_realEstate(allProperties, unsigned short int);//Define all properties datas
+allProperties define_realEstate(allProperties);//Define all properties datas
 
-void define_propGrp(propertiesGrp, unsigned short int); //Define each properties group
+propertiesGrp define_propGrp(propertiesGrp, unsigned short int); //Define each properties group
 
 unsigned int calcul_propPosition(unsigned int, unsigned int);//Calcul property' position
 
