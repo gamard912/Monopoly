@@ -3,6 +3,7 @@
 #include "struct.h"
 #include "color.h"
 
+
 using namespace std;
 
 void print_playboard(joueur player, joueur bot1, joueur bot2){

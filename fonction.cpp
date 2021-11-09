@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "playboard.h"
+#include "properties.h"
 
 using namespace std;
 
@@ -136,8 +137,8 @@ void game_master(joueur player, lancer des_joueur, joueur bot1, lancer des_bot1,
     }else if(recup_choix_debut == 'r')
     {
         affichage_regles();
-        game_master(player, des_joueur, bot1, des_bot1, bot2, des_bot2);
+        game_master(player, des_joueur, bot1, des_bot1, bot2, des_bot2,estate);
     }else{
-        game_master(player, des_joueur, bot1, des_bot1, bot2, des_bot2);
+        game_master(player, des_joueur, bot1, des_bot1, bot2, des_bot2,estate);
     }
 }
