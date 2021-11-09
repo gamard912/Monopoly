@@ -44,7 +44,7 @@ void affichage_regles()
     cout << "pour gagnez la partie les deux bots ne doivent plus avoir d'argent" << endl<< endl;
 }
 
-void game_master(joueur player, lancer des_joueur, joueur bot1, lancer des_bot1, joueur bot2, lancer des_bot2, int propertiesData[40][3])
+void game_master(joueur player, lancer des_joueur, joueur bot1, lancer des_bot1, joueur bot2, lancer des_bot2, int propertiesData[40][4])
 {
     char recup_choix_debut = saisie_menu_debut();
 
