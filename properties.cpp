@@ -42,55 +42,106 @@ void define_realEstate(allProperties estate){
     }
 }
 void define_propGrp(propertiesGrp propGrp, unsigned short int grpNumber){
-    const int estatePrice[22]={60,60,100,100,120,140,140,160,180,180,200,220,220,240,260,260,280,300,300,320,350,400};
-    const int stationsPrice=200;
-    const int companiesPrice=150;
-    const int estateInitalRent[22]={2,4,6,6,8,10,10,12,14,14,16,18,18,20,22,22,22,26,26,28,35,50};
-    const int stationsInitRent=25;
-    const int taxesRent[2]={200,100};
-    const short estateTags[22]={};
-    const int propPerGrp[11]={2,3,3,3,3,3,3,2,4,2,2};
-    static unsigned int positions=0;
+    static unsigned int position=0;
     static unsigned int j=0;
-    for (unsigned int i=0;i<propPerGrp[grpNumber-1];i++){
+    for (int i=0;i<propPerGrp[grpNumber-1];i++){
+        position=calcul_propPosition(position,j);
         if(grpNumber>=1&&grpNumber<=8){
             switch (i){
                 case 0:
-                    propGrp.propA.price=estatePrice[j];
-                    propGrp.propA.rent=estateInitalRent[j];
-                    propGrp.propA.name=estateTags[j];
-                    propGrp.propA.position=positions;
-                    propGrp.propA.buy=false;
+                    propGrp.propA=define_basicProp(propGrp.propA,j,position);
                     break;
                 case 1:
-                    propGrp.propB.price=estatePrice[j];
-                    propGrp.propB.rent=estateInitalRent[j];
-                    propGrp.propB.name=estateTags[j];
-                    propGrp.propB.position=positions;
-                    propGrp.propB.buy=false;
+                    propGrp.propB=define_basicProp(propGrp.propB,j,position);
                     break;
                 case 2:
-                    propGrp.propC.price=estatePrice[j];
-                    propGrp.propC.rent=estateInitalRent[j];
-                    propGrp.propC.name=estateTags[j];
-                    propGrp.propC.position=positions;
-                    propGrp.propC.buy=false;
+                    propGrp.propC=define_basicProp(propGrp.propC,j,position);
                     break;
                 case 3:
-                    propGrp.propD.price=estatePrice[j];
-                    propGrp.propD.rent=estateInitalRent[j];
-                    propGrp.propD.name=estateTags[j];
-                    propGrp.propD.position=positions;
-                    propGrp.propD.buy=false;
+                    propGrp.propD=define_basicProp(propGrp.propD,j,position);
                     break;
             }
             j++;
         }
         else if(grpNumber==9){
+            switch (i){
+                case 0:
+                    propGrp.propA=define_stations(propGrp.propA,j,position);
+                    break;
+                case 1:
+                    propGrp.propB=define_stations(propGrp.propB,j,position);
+                    break;
+                case 2:
+                    propGrp.propC=define_stations(propGrp.propC,j,position);
+                    break;
+                case 3:
+                    propGrp.propD=define_stations(propGrp.propD,j,position);
+                    break;
+            }
+            j++;
         }
         else if(grpNumber==10){
+            switch (i){
+                case 0:
+                    propGrp.propA=define_stations(propGrp.propA,j,position);
+                    break;
+                case 1:
+                    propGrp.propB=define_stations(propGrp.propB,j,position);
+                    break;
+            }
+            j++;
         }
         else if(grpNumber==11){
+            switch (i){
+                case 0:
+                    propGrp.propA=define_taxes(propGrp.propA,j,position,0);
+                    break;
+                case 1:
+                    propGrp.propB=define_taxes(propGrp.propB,j,position,1);
+                    break;
+            }
+            j++;
         }
     }
+}
+
+unsigned int calcul_propPosition(unsigned int position, unsigned int j){
+    position = estatePositions[j];
+    return position;
+}
+
+property define_basicProp(property prop, unsigned int propNumber, unsigned int propPosition){
+    prop.price=estatePrice[propNumber];
+    prop.rent=estateInitalRent[propNumber];
+    prop.name=estateTags[propNumber];
+    prop.position=propPosition;
+    prop.buy=false;
+    return prop;
+}
+
+property define_stations(property prop, unsigned int propNumber, unsigned int propPosition){
+    prop.price=stationsPrice;
+    prop.rent=stationsInitRent;
+    prop.name=estateTags[propNumber];
+    prop.position=propPosition;
+    prop.buy=false;
+    return prop;
+}
+
+property define_companies(property prop, unsigned int propNumber, unsigned int propPosition){
+    prop.price=companiesPrice;
+    prop.rent=-1;
+    prop.name=estateTags[propNumber];
+    prop.position=propPosition;
+    prop.buy=true;
+    return prop;
+}
+
+property define_taxes(property prop, unsigned int propNumber, unsigned int propPosition, unsigned int propIndex){
+    prop.price=0;
+    prop.rent=taxesRent[propIndex];
+    prop.name=estateTags[propNumber];
+    prop.position=propPosition;
+    prop.buy=true;
+    return prop;
 }
