@@ -19,35 +19,5 @@ typedef struct{
 
 } lancer ;
 
-typedef struct{
-
-    int price;
-    int rent;
-    string name;
-    unsigned int position;
-    bool buy;
-
-}property;
-
-typedef struct{
-    property propA;
-    property propB;
-    property propC;
-    property propD;
-}propertiesGrp;
-
-typedef struct{
-    propertiesGrp propGrp1;
-    propertiesGrp propGrp2;
-    propertiesGrp propGrp3;
-    propertiesGrp propGrp4;
-    propertiesGrp propGrp5;
-    propertiesGrp propGrp6;
-    propertiesGrp propGrp7;
-    propertiesGrp propGrp8;
-    propertiesGrp propGrpStations;
-    propertiesGrp propGrpCompanies;
-    propertiesGrp propGrpTaxes;
-}allProperties;
 
 #endif // STRUCT_H
