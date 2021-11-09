@@ -17,12 +17,13 @@ int main()
     lancer des_bot1;
     lancer des_bot2;
 
-    int propertiesData[40][3]={{2,0,0},
+    int propertiesData[40][3]={{2,0,0},{}
 
     };
 
     srand(time(NULL));
 
+    setup_screen();
     game_master(player, des_joueur, bot1, des_bot1, bot2, des_bot2, propertiesData);
 
     return 0;
