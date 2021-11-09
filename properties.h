@@ -7,6 +7,6 @@ const string propNames[40]={"Start","Boulevard de Belleville","Caisse de Communa
                              "Boulevard Saint-Michel","Place Pigalle","Parc Gratuit","Avenue Matignon","Boulevard Malesherbes","Rue Nationale","Gare du Nord","Faubourg Saint-Honoré","Place de la Bourse","Compagnie des Eaux",
                              "Rue La Fayette","Allez en prison...","Avenue de Breteuil","Rue de Boulogne","Caisse de Communauté","Boulevard des Capucines","Gare Saint-Lazare","Chance","Avenue des Champs-Elysées",
                              "Taxe de Luxe","Rue de la Paix"};
-
+joueur take_rents(int,int,joueur);
 
 #endif // PROPERTIES_H
