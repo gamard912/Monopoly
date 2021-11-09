@@ -63,4 +63,8 @@ void game_master(joueur player, lancer des_joueur, joueur bot1, lancer des_bot1,
         game_master(player, des_joueur, bot1, des_bot1, bot2, des_bot2,estate);
     }
 }
+void setup_screen()
+{
+    cout << "\e[8;150;400t";
+}
 
