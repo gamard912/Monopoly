@@ -11,5 +11,6 @@ int quitter();
 void game_master(joueur player, lancer des_joueur, joueur bot1, lancer des_bot1, joueur bot2, lancer des_bot2, int propertiesData[40][4]);
 void setup_screen();
 void clear_screan();
+int saisie_passe();
 
 #endif // FONCTION_H

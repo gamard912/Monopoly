@@ -26,6 +26,8 @@ char saisie_menu_debut()
     cout << "Pour lancer la partie tapez 'l' et pour afficher les regles 'r'" << endl;
     cin >> choix_debut;
 
+
+
     if(choix_debut != 'l' && choix_debut != 'r')
     {
         cout << "Erreur lors de la saisie" << endl;
@@ -44,19 +46,48 @@ void affichage_regles()
     cout << "pour gagnez la partie les deux bots ne doivent plus avoir d'argent" << endl<< endl;
 }
 
+int saisie_passe()
+{
+    char saisie = 0;
+
+    cout << "Tapez r pour passer au prochain joueur (bot)" << endl;
+    cin >> saisie;
+
+    if(saisie != 114)
+    {
+        cout << "Erreur lors de la saisie " << endl;
+        return saisie_passe();
+    }else
+    {
+        return 0;
+    }
+
+}
+
 void game_master(joueur player, lancer des_joueur, joueur bot1, lancer des_bot1, joueur bot2, lancer des_bot2, int propertiesData[40][4])
 {
     char recup_choix_debut = saisie_menu_debut();
+    player.argent = 1500;
 
     if(recup_choix_debut == 'l')
     {
         for(int i = 0; i<20; i++)
         {
-            print_playboard(player, bot1, bot2);
+            //print_playboard(player, bot1, bot2);
+            cout << "Plateau de jeu"<<endl;
             player=Affichage_joueur(player, des_joueur);
-            print_playboard(player, bot1, bot2);
+            player.argent = achat_prop(propertiesData, player, des_joueur);
+            saisie_passe();
+            clear_screen();
+            //print_playboard(player, bot1, bot2);
+            cout << "Plateau de jeu"<<endl;
             bot1=Affichage_bot1(bot1, des_bot1);
+            saisie_passe();
+            clear_screen();
+            cout << "Plateau de jeu"<<endl;
             bot2=Affichage_bot2(bot2, des_bot2);
+            saisie_passe();
+            clear_screen();
         }
 
     }else if(recup_choix_debut == 'r')

@@ -6,7 +6,7 @@ using namespace std;
 
 typedef struct{
 
-    int argent = 1500;
+    int argent;
     int position = 0;  // case de depart
     int tours_de_plateau = 0;
     int dice;
