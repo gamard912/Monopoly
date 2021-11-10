@@ -8,5 +8,7 @@ const string propNames[40]={"Start","Boulevard de Belleville","Caisse de Communa
                              "Rue La Fayette","Allez en prison...","Avenue de Breteuil","Rue de Boulogne","Caisse de Communauté","Boulevard des Capucines","Gare Saint-Lazare","Chance","Avenue des Champs-Elysées",
                              "Taxe de Luxe","Rue de la Paix"};
 joueur take_rents(int,joueur);
+int achat_prop_joueur(int propertiesData[40][4],joueur player);
+int achat_prop_bot(int propertiesData[40][4],joueur player);
 
 #endif // PROPERTIES_H

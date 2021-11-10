@@ -6,52 +6,54 @@
 
 using namespace std;
 
-// ******************************* Tout ce qui concerne le bot2 *************************************
-lancer des_du_bot2(lancer des_bot2)
+// ******************************* Tout ce qui concerne le bot *************************************
+lancer des_du_bot(lancer des_bot)
 {
-    des_bot2.des1 = rand()%6 + 1;
-    des_bot2.des2 = rand()%6 + 1;
+    des_bot.des1 = rand()%6 + 1;
+    des_bot.des2 = rand()%6 + 1;
 
-    return  des_bot2;
+    return  des_bot;
 }
-joueur position_bot2(joueur bot2, lancer des_bot2)
-{
-    static int position_bot2 = 0;                                //on crée une variable en static afin qu'elle ne soit pas redefinie a 0
-    static int argent_bot2 = 1500;
-    static unsigned int pre_position_bot2 = 0;
-    int somme_des_bot2 = 0;
+joueur position_bot(joueur bot, lancer des_bot)
+{                               //on crée une variable en static afin qu'elle ne soit pas redefinie a 0
+    static int tours_joueur = 0;
+    static unsigned int pre_position = 0;
+    int somme_des = 0;
 
-    somme_des_bot2 =  des_bot2.des1 + des_bot2.des2;
-    position_bot2 += somme_des_bot2;                                  // on calcul la position en fonction des dés et de la position précedentes
-    pre_position_bot2 = position_bot2 - somme_des_bot2;
+    somme_des =  des_bot.des1 + des_bot.des2;
+    bot.position += somme_des;                                  // on calcule la position en fonction des dés et de la position précedentes
+    pre_position = bot.position - somme_des;
+    tours_joueur = bot.tours_de_plateau;
 
-    if(position_bot2 > 40)
+    if(bot.position > 39)
     {
-        position_bot2 = (pre_position_bot2 + somme_des_bot2)-40;
-        argent_bot2 += 200;
+        bot.position = (pre_position + somme_des)-40;
+        bot.argent += 200;
+        tours_joueur++;
     }
-    if(position_bot2 == 1)
+    if(bot.position == 0 && tours_joueur != 0)
     {
-        argent_bot2 += 400;
+        bot.argent += 400;
     }
 
-    bot2.argent = argent_bot2;
-    bot2.position = position_bot2;
-    return bot2;
+    bot.tours_de_plateau = tours_joueur;
+
+    return bot;
 }
-joueur Affichage_bot2(joueur bot2, lancer des_bot2)
+joueur Affichage_bot(joueur bot, lancer des_bot)
 {
-    bot2 = position_bot2(bot2, des_bot2);
-    cout << "*******************************BOT 2**********************************" <<endl;
-    cout << "le bot2 a : " << bot2.argent << "e" <<endl;
-    cout << "il est a la case : " << bot2.position  << endl;
+    bot = position_bot(bot, des_bot);
+    cout << "*******************************BOT **********************************" <<endl;
+    cout << "le bot a : " << bot.argent << "e" <<endl;
+    cout << "il est a la case : " << bot.position  << endl;
 
-    des_bot2 = des_du_bot2(des_bot2);
-    bot2 = position_bot2(bot2, des_bot2);
+    des_bot = des_du_bot(des_bot);
+    bot = position_bot(bot, des_bot);
 
     cout << endl;
-    cout << "il a fait : " << des_bot2.des1 << " et " << des_bot2.des2 << endl;
-    cout << "il passe a la case : " << bot2.position << endl;
-    cout << "il passe a : " << bot2.argent << endl;
-    return bot2;
+    cout << "il a fait : " << des_bot.des1 << " et " << des_bot.des2 << endl;
+    cout << "il passe a la case : " << bot.position << endl;
+    cout << "il passe a : " << bot.argent << endl;
+
+    return bot;
 }

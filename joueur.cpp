@@ -71,65 +71,25 @@ joueur gestion_position(joueur player, lancer des_joueur)
     return player;                                        //on retourne la position
 }
 
-joueur take_rents(int propertiesData[40][4],joueur player){
-
-    if ((propertiesData[player.position][3]==(-1)) || (propertiesData[player.position][3]==0) || (propertiesData[player.position][2]==0)){
+joueur take_rents(int propertiesData[40][4], int playerNumber,joueur player)
+{
+    if ((propertiesData[player.position][3] == (-1)) || (propertiesData[player.position][3]==0) || (propertiesData[player.position][2]==0))
+    {
         cout << "Internal Error, Cannot get rent !" << endl;
         //return error, case cannot get rent (because property doesn't have a owner or property has a rent of 0)
     }
-    else if(propertiesData[player.position][3] == 0){
-        if (propertiesData[player.position][2]>0){
+    else if(propertiesData[player.position][3] != playerNumber)
+    {
+        if (propertiesData[player.position][2]>0)
+        {
             player.argent=player.argent-propertiesData[player.position][2];
         }
-        else if (propertiesData[player.position][2]==(-1)){
+        else if (propertiesData[player.position][2]==(-1))
+        {
             player.argent=player.argent-(player.dice * 4);
         }
     }
     return player;
-}
-
-int achat_prop(int propertiesData[40][4], joueur player, lancer des_joueur)
-{
-    char choix = 0;
-    player = gestion_position(player, des_joueur);
-    if(propertiesData[player.position][0] == 0 )
-    {
-        cout << endl << propNames[player.position] << " est disponible" << endl;
-        cout << "Le prix pour l'achat de la propriete est de :" << propertiesData[player.position][1] << endl;
-        if(propertiesData[player.position][1] <= player.argent)
-        {
-            cout << "Tapez a pour achetez la proprieter :" << endl;
-            cin >> choix;
-            if(choix == 'a')
-            {
-                player.argent -=  propertiesData[player.position][1];
-                propertiesData[player.position][0] = 1;
-                cout << "vous avez bien achetez cette prop" << endl;
-
-            }else if(choix == 'n')
-            {
-                return player.argent;
-            }else{
-                cout << "Erreur lors de la saisie" <<endl;
-                return achat_prop(propertiesData, player, des_joueur);
-            }
-        }else{
-            cout << "Vous n'avez pas les fonds nécessaire afin d'acheter la proprieter" << endl;
-        }
-
-    }else if(propertiesData[player.position][0] >= 2)
-    {
-        cout << endl <<"Bienvenue sur la case : " <<propNames[player.position] << endl;
-
-    }else if(propertiesData[player.position][0] == 1)
-    {
-        cout << "la prop est deja acheter" << endl;
-        take_rents(propertiesData, player);
-    }
-
-
-    return player.argent;
-
 }
 
 

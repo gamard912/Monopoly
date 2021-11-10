@@ -18,6 +18,6 @@ char saisie_joueur();
 int affichage_Nouvelle_position_joueur(joueur player,lancer des_joueur);
 lancer init_random_des_du_joueur(lancer des_joueur);
 joueur gestion_position(joueur player ,lancer des_joueur);
-int achat_prop(int propertiesData[40][4],joueur player,  lancer des_joueur);
+
 
 #endif // JOUEUR_H

@@ -68,22 +68,31 @@ void game_master(joueur player, lancer des_joueur, joueur bot1, lancer des_bot1,
 {
     char recup_choix_debut = saisie_menu_debut();
     player.argent = 1500;
+    bot1.argent = 1500;
+    bot2.argent = 1500;
           clear_screen();
     if(recup_choix_debut == 'l')
     {
         for(int i = 0; i<20; i++)
         {
+
+            player = Affichage_joueur(player, des_joueur);
             print_playboard(player, bot1, bot2);
-            player=Affichage_joueur(player, des_joueur);
-            player.argent = achat_prop(propertiesData, player, des_joueur);
+            player.argent = achat_prop_joueur(propertiesData, player);
             saisie_passe();
             clear_screen();
+
+
+            bot1 = Affichage_bot(bot1, des_bot1);
             print_playboard(player, bot1, bot2);
-            bot1=Affichage_bot1(bot1, des_bot1);
+            bot1.argent = achat_prop_bot(propertiesData, bot1);
             saisie_passe();
             clear_screen();
+
+
+            bot2 = Affichage_bot(bot2, des_bot2);
             print_playboard(player, bot1, bot2);
-            bot2=Affichage_bot2(bot2, des_bot2);
+            bot2.argent = achat_prop_bot(propertiesData, bot2);
             saisie_passe();
             clear_screen();
         }
