@@ -8,7 +8,15 @@
 char saisie_menu_debut();
 void affichage_regles();
 int quitter();
-void game_master(joueur player, lancer des_joueur, joueur bot1, lancer des_bot1, joueur bot2, lancer des_bot2, int propertiesData[40][4]);
+bool verif_fin_de_partie(joueur);
+joueur gestion_joueur(int propertiesData[40][4],Data_joueur player);
+joueur gestion_bot(int propertiesData[40][4], Data_joueur player, joueur);
+Data_joueur elim_bot2(Data_joueur player, int propertiesData[40][4]);
+Data_joueur elim_bot1(Data_joueur player, int propertiesData[40][4]);
+Data_joueur pas_elim(Data_joueur player, int propertiesData[40][4]);
+int game_master(Data_joueur player, int propertiesData[40][4]);
+
+
 void setup_screen();
 void clear_screan();
 int saisie_passe();

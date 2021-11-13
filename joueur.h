@@ -13,11 +13,11 @@
 #include "struct.h"
 
 // ******************************* Tout ce qui concerne le joueur *************************************
-joueur Affichage_joueur(joueur player, lancer des_joueur);
+joueur Affichage_joueur(Data_joueur player);
 char saisie_joueur();
-int affichage_Nouvelle_position_joueur(joueur player,lancer des_joueur);
-lancer init_random_des_du_joueur(lancer des_joueur);
-joueur gestion_position(joueur player ,lancer des_joueur);
+int affichage_Nouvelle_position_joueur(Data_joueur player);
+lancer init_random_des_du_joueur(Data_joueur player);
+joueur gestion_position(Data_joueur player);
 
 
 #endif // JOUEUR_H

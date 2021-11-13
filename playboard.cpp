@@ -6,20 +6,20 @@
 
 using namespace std;
 
-void print_playboard(joueur player, joueur bot1, joueur bot2){
+void print_playboard(Data_joueur player){
     cout << "******************************* PLATEAU DE JEU **********************************"<<endl;
-    print_playerPosition(player,0);
-    print_playerPosition(bot1,1);
-    print_playerPosition(bot2,2);
+    print_playerPosition(player.human,0);
+    print_playerPosition(player.bot1,1);
+    print_playerPosition(player.bot2,2);
     cout << endl;
     print_grid();
     cout << endl;
 }
 
-void print_playerPosition(joueur player, int playerIndex){
+void print_playerPosition(joueur global, int playerIndex){
     for (int i=0;i<40;i++){
         cout << " ";
-        if (i==player.position){
+        if (i == global.position){
             switch (playerIndex){
                 case 0:
                     cout << "J ";

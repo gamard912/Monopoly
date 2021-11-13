@@ -4,8 +4,8 @@
 
 // ******************************* Tout ce qui concerne le bot2 *************************************
 
-joueur Affichage_bot(joueur bot, lancer des_bot);
-lancer des_du_bot(lancer des_bot);
-int position_bot(lancer des_bot);
+joueur Affichage_bot(joueur, lancer);
+lancer des_du_bot(lancer global);
+joueur position_bot(joueur, lancer);
 
 #endif // BOT2_H
