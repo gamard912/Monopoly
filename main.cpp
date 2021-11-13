@@ -18,7 +18,7 @@ int main()
     srand(time(NULL));
 
     setup_screen();
-    game_master(player, propertiesData);
+   game_master(player, propertiesData);
 
     return 0;
 }

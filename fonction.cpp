@@ -110,10 +110,12 @@ Data_joueur pas_elim(Data_joueur player, int propertiesData[40][4])
         player.human = gestion_joueur(propertiesData,player);
 
         cout << "*******************************BOT 1 **********************************" <<endl;
-        player.bot1 = gestion_bot(propertiesData ,player , player.bot1);
+        player.bot1 = gestion_bot(propertiesData ,player , player.bot1, 1);
 
         cout << "*******************************BOT 2 **********************************" <<endl;
-        player.bot2 = gestion_bot(propertiesData, player ,player.bot2);
+        player.bot2 = gestion_bot(propertiesData, player ,player.bot2, 2);
+
+        player.bot2.argent = -5;
 
         player.human.elimination = verif_fin_de_partie(player.human);
         player.bot1.elimination = verif_fin_de_partie(player.bot1);
@@ -125,12 +127,16 @@ Data_joueur pas_elim(Data_joueur player, int propertiesData[40][4])
 Data_joueur elim_bot1(Data_joueur player,  int propertiesData[40][4])
 {
 
+    if(player.human.elimination == 0 && player.bot1.elimination == 1 && player.bot2.elimination == 0)
+    {
+        Affichage_elim_bot(player, player.bot1);
+    }
     while (player.human.elimination == 0 && player.bot1.elimination == 1 && player.bot2.elimination == 0) {
 
         player.human = gestion_joueur(propertiesData, player);
 
         cout << "*******************************BOT 2 **********************************" <<endl;
-        player.bot2 = gestion_bot(propertiesData, player ,player.bot2);
+        player.bot2 = gestion_bot(propertiesData, player ,player.bot2, 2);
 
 
         player.human.elimination = verif_fin_de_partie(player.human);
@@ -148,7 +154,7 @@ Data_joueur elim_bot2(Data_joueur player,  int propertiesData[40][4])
         player.human = gestion_joueur(propertiesData, player);
 
         cout << "*******************************BOT 1 **********************************" <<endl;
-        player.bot1 = gestion_bot(propertiesData, player ,player.bot1);
+        player.bot1 = gestion_bot(propertiesData, player ,player.bot1, 1);
 
         player.human.elimination = verif_fin_de_partie(player.human);
         player.bot1.elimination = verif_fin_de_partie(player.bot1);
@@ -161,7 +167,7 @@ joueur gestion_joueur(int propertiesData[40][4],Data_joueur player)
 {
 
     player.human = Affichage_joueur(player);
-    print_playboard(player);
+    print_playboard(player.human, player.bot1, player.bot2);
     player.human.argent = achat_prop_joueur(propertiesData, player);
     player.human.elimination = verif_fin_de_partie(player.human);
 
@@ -173,20 +179,37 @@ joueur gestion_joueur(int propertiesData[40][4],Data_joueur player)
     return player.human;
 }
 
-joueur gestion_bot(int propertiesData[40][4], Data_joueur player, joueur global)
+joueur gestion_bot(int propertiesData[40][4], Data_joueur player, joueur global, int bot)
 {
     static int appel = 0;
     player.global = global;
     appel++;
 
+
     player.global = Affichage_bot(player.global, player.des_global);
-    print_playboard(player);
+    if(bot == 1)
+    {
+        print_playboard(player.human, player.global, player.bot2);
+    }else{
+        print_playboard(player.human, player.bot1, player.global);
+    }
+
+
     player.global.argent = achat_prop_bot(propertiesData, global);
     player.global.elimination = verif_fin_de_partie(global);
     saisie_passe();
     clear_screen();
 
     return player.global;
+}
+
+void Affichage_elim_bot(Data_joueur player, joueur global)
+{
+    cout << "-----------------------------------------------------------------------------------------"<< endl;
+    cout << "                                        Le Bot Numero " << player.global.playerNumber << "                                       "<<endl;
+    cout << "                    HeHe plus qu'un bot a eliminer et vous gagner la game!!!             "<< endl;
+    cout << "-----------------------------------------------------------------------------------------"<< endl;
+
 }
 
 
@@ -196,7 +219,6 @@ bool verif_fin_de_partie(joueur global)
     {
         return  0;
     }else{
-        cout << "élimation du joueur " << global.playerNumber <<endl;
         return 1;
     }
 

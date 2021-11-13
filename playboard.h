@@ -2,7 +2,7 @@
 #define PLAYBOARD_H
 #include "struct.h"
 
-void print_playboard(Data_joueur player);
+void print_playboard(joueur, joueur, joueur);
 
 void print_playerPosition(joueur, int playerIndex);
 

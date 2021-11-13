@@ -6,11 +6,11 @@
 
 using namespace std;
 
-void print_playboard(Data_joueur player){
+void print_playboard(joueur human, joueur bot1, joueur bot2){
     cout << "******************************* PLATEAU DE JEU **********************************"<<endl;
-    print_playerPosition(player.human,0);
-    print_playerPosition(player.bot1,1);
-    print_playerPosition(player.bot2,2);
+    print_playerPosition(human,0);
+    print_playerPosition(bot1,1);
+    print_playerPosition(bot2,2);
     cout << endl;
     print_grid();
     cout << endl;
