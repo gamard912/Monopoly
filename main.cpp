@@ -4,6 +4,7 @@
 #include "playboard.h"
 #include "properties.h"
 #include "time.h"
+#include "init.h"
 
 using namespace std;
 

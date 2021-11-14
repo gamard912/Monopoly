@@ -4,13 +4,14 @@
 
 
 
+
 // ******************************* fonction generale *************************************
 char saisie_menu_debut();
 void affichage_regles();
 int quitter();
-bool verif_fin_de_partie(joueur);
+bool verif_fin_de_partie(int propertiesData[40][4],joueur);
 joueur gestion_joueur(int propertiesData[40][4],Data_joueur player);
-void Affichage_elim_bot(Data_joueur player, joueur global);
+void Affichage_elim_bot( joueur global);
 joueur gestion_bot(int propertiesData[40][4], Data_joueur player, joueur, int);
 Data_joueur elim_bot2(Data_joueur player, int propertiesData[40][4]);
 Data_joueur elim_bot1(Data_joueur player, int propertiesData[40][4]);
@@ -18,8 +19,7 @@ Data_joueur pas_elim(Data_joueur player, int propertiesData[40][4]);
 int game_master(Data_joueur player, int propertiesData[40][4]);
 
 
-void setup_screen();
-void clear_screan();
-int saisie_passe();
+
+int saisie_passe(int propertiesData[40][4],joueur);
 
 #endif // FONCTION_H

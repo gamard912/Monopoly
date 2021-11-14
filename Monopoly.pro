@@ -7,6 +7,7 @@ SOURCES += \
         bot1.cpp \
         bot2.cpp \
         fonction.cpp \
+        init.cpp \
         joueur.cpp \
         main.cpp \
         playboard.cpp \
@@ -17,6 +18,7 @@ HEADERS += \
     bot2.h \
     color.h \
     fonction.h \
+    init.h \
     joueur.h \
     playboard.h \
     properties.h \
