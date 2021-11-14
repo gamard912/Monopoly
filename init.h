@@ -3,7 +3,7 @@
 #include "struct.h"
 
 void setup_screen();
-void clear_screan();
+void clear_screen();
 void affichage();
 
 #endif // INIT_H

@@ -71,26 +71,6 @@ joueur gestion_position(Data_joueur player)
     return player.human;                                        //on retourne la position
 }
 
-joueur take_rents(int propertiesData[40][4], Data_joueur player)
-{
-    if ((propertiesData[player.human.position][3] == (-1)) || (propertiesData[player.human.position][3]==0) || (propertiesData[player.human.position][2]==0))
-    {
-        cout << "Internal Error, Cannot get rent !" << endl;
-        //return error, case cannot get rent (because property doesn't have a owner or property has a rent of 0)
-    }
-    else if(propertiesData[player.human.position][3] != player.human.playerNumber)
-    {
-        if (propertiesData[player.human.position][2]>0)
-        {
-            player.human.argent=player.human.argent-propertiesData[player.human.position][2];
-        }
-        else if (propertiesData[player.human.position][2]==(-1))
-        {
-            player.human.argent=player.human.argent-(player.human.dice * 4);
-        }
-    }
-    return player.human;
-}
 
 
 

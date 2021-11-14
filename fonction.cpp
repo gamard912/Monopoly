@@ -58,7 +58,7 @@ int saisie_passe(int propertiesData[40][4],joueur global)
 {
     char saisie = 0;
 
-    cout << "Tapez r pour passer au prochain joueur et p pour afficher vos proprietez " << endl;
+    cout << "Tapez r pour passer au prochain joueur et p pour afficher les proprietez du joueur" << endl;
     cin >> saisie;
     cin.clear();
     if(saisie == 'r')
@@ -89,7 +89,7 @@ int game_master(Data_joueur player, int propertiesData[40][4])
         player.bot2.playerNumber = 2;
 
         saisie_menu_debut();
-        clear_screan();
+        clear_screen();
     }
     do{
 
@@ -170,11 +170,11 @@ joueur gestion_joueur(int propertiesData[40][4],Data_joueur player)
 
     player.human = Affichage_joueur(player);
     print_playboard(player.human, player.bot1, player.bot2);
-    player.human.argent = achat_prop_joueur(propertiesData, player);
+    player = achat_prop_joueur(propertiesData, player);
     player.human.elimination = verif_fin_de_partie(propertiesData,player.human);
 
     saisie_passe(propertiesData, player.human);
-    clear_screan();
+    clear_screen();
 
 
 
@@ -197,10 +197,10 @@ joueur gestion_bot(int propertiesData[40][4], Data_joueur player, joueur global,
     }
 
 
-    player.global.argent = achat_prop_bot(propertiesData, player.global);
+    player = achat_prop_bot(propertiesData, player.global, player);
     player.global.elimination = verif_fin_de_partie(propertiesData,player.global);
     saisie_passe(propertiesData, player.global);
-    clear_screan();
+    clear_screen();
 
     return player.global;
 }

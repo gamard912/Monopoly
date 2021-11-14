@@ -7,9 +7,9 @@ const string propNames[40]={"Start","Boulevard de Belleville","Caisse de Communa
                              "Boulevard Saint-Michel","Place Pigalle","Parc Gratuit","Avenue Matignon","Boulevard Malesherbes","Rue Nationale","Gare du Nord","Faubourg Saint-Honoré","Place de la Bourse","Compagnie des Eaux",
                              "Rue La Fayette","Allez en prison...","Avenue de Breteuil","Rue de Boulogne","Caisse de Communauté","Boulevard des Capucines","Gare Saint-Lazare","Chance","Avenue des Champs-Elysées",
                              "Taxe de Luxe","Rue de la Paix"};
-joueur take_rents(int,joueur);
+Data_joueur take_rents(int propertiesData[40][4], Data_joueur player, joueur global);
 void affichage_prop (int propertiesData[40][4], joueur);
-int achat_prop_joueur(int propertiesData[40][4],Data_joueur player);
-int achat_prop_bot(int propertiesData[40][4],joueur);
+Data_joueur achat_prop_joueur(int propertiesData[40][4], Data_joueur player);
+Data_joueur achat_prop_bot(int propertiesData[40][4], joueur global, Data_joueur player);
 
 #endif // PROPERTIES_H
