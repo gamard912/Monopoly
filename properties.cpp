@@ -99,29 +99,29 @@ void affichage_prop(int propertiesData[40][4],joueur global)
 
 Data_joueur achat_prop_bot(int propertiesData[40][4], joueur global, Data_joueur player)
 {
-    if(propertiesData[global.position][0] == 0 )
+    player.global = global;
+    if(propertiesData[player.global.position][0] == 0 )
     {
-        cout << endl << propNames[global.position] << " est disponible" << endl;
-        cout << "Le prix pour l'achat de la propriete est de :" << propertiesData[global.position][1] << endl;
-        if(propertiesData[global.position][1] <= global.argent)
+        cout << endl << propNames[player.global.position] << " est disponible" << endl;
+        cout << "Le prix pour l'achat de la propriete est de :" << propertiesData[player.global.position][1] << endl;
+        if(propertiesData[player.global.position][1] <= player.global.argent)
         {
-                global.argent -=  propertiesData[global.position][1];
-                propertiesData[global.position][0] = 1;
-                propertiesData[global.position][3] = global.playerNumber;
+                player.global.argent -=  propertiesData[player.global.position][1];
+                propertiesData[player.global.position][0] = 1;
+                propertiesData[player.global.position][3] = player.global.playerNumber;
                 cout << "vous avez bien achetez cette prop" << endl;
         }else{
             cout << "Le bot n'a pas les fonds nécessaire afin d'acheter la proprieter" << endl;
         }
 
-    }else if(propertiesData[global.position][0] >= 2)
+    }else if(propertiesData[player.global.position][0] >= 2)
     {
-        cout << endl <<"Bienvenue sur la case : " << propNames[global.position] << endl;
+        cout << endl <<"Bienvenue sur la case : " << propNames[player.global.position] << endl;
 
-    }else if(propertiesData[global.position][0] == 1)
+    }else if(propertiesData[player.global.position][0] == 1)
     {
         player = take_rents(propertiesData, player, global);
     }
 
-    global = player.global;
     return player;
 }

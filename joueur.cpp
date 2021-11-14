@@ -74,7 +74,7 @@ joueur gestion_position(Data_joueur player)
 
 
 
-int affichage_Nouvelle_position_joueur(Data_joueur player)
+joueur affichage_Nouvelle_position_joueur(Data_joueur player)
 {
     player.des_human =init_random_des_du_joueur(player);                 //on recupere la valeur des dés
     player.human = gestion_position(player);              // on stock la position afin de l'afficher
@@ -84,7 +84,7 @@ int affichage_Nouvelle_position_joueur(Data_joueur player)
     cout << "Vous passer a la case : " << player.human.position << endl;
     cout << "Vous avez maintenant : " << player.human.argent << "e "<< endl;
 
-    return player.human.position;
+    return player.human;
 
 }
 joueur Affichage_joueur(Data_joueur player)
@@ -102,7 +102,7 @@ joueur Affichage_joueur(Data_joueur player)
     //on vérifie la saisie que l'on a recuperer dans une variable
     saisie_joueur();
 
-    player.human.position= affichage_Nouvelle_position_joueur(player);
+    player.human = affichage_Nouvelle_position_joueur(player);
 
     return player.human;
 }
