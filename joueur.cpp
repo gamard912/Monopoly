@@ -57,12 +57,15 @@ joueur gestion_position(Data_joueur player)
     if(position > 39)
     {
         position = (pre_position + somme_des)-40;
-        player.human.argent += 200;
+        if(position != 0)
+        {
+            player.human.argent += 200;
+        }else if(position == 0 && tours_joueur != 0)
+        {
+            player.human.argent += 400;
+        }
+
         tours_joueur++;
-    }
-    if(position == 0 && tours_joueur != 0)
-    {
-        player.human.argent += 400;
     }
 
     player.human.position = position;

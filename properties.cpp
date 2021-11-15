@@ -40,6 +40,8 @@ Data_joueur achat_prop_joueur(int propertiesData[40][4], Data_joueur player)
     {
         cout << "La propieter est deja acheter vous payer donc : " << propertiesData[player.human.position][2] <<"e " <<endl;
         player = take_rents(propertiesData, player, player.human);
+        player.human = player.global;
+
     }
 
     return player;
@@ -60,15 +62,17 @@ Data_joueur take_rents(int propertiesData[40][4], Data_joueur player, joueur glo
             if(propertiesData[global.position][3] == player.bot1.playerNumber)
             {
                 cout << "le bot 1 recoit donc : " << propertiesData[global.position][2] <<"e " <<endl;
-                player.bot1.argent += propertiesData[player.human.position][2];
+                player.bot1.argent = player.bot1.argent+propertiesData[global.position][2];
+
             }else if(propertiesData[global.position][3] == player.bot2.playerNumber)
             {
                 cout << "le bot 2 recoit donc : " << propertiesData[global.position][2] <<"e " <<endl;
-                player.bot2.argent += propertiesData[player.human.position][2];
+                player.bot2.argent = player.bot2.argent+propertiesData[global.position][2];
+
             }else if(propertiesData[global.position][3] == player.human.playerNumber)
             {
                 cout << "La propieter est deja acheter vous gagner donc : " << propertiesData[global.position][2] <<"e " <<endl;
-                player.human.argent += propertiesData[global.position][2];
+                player.human.argent = player.human.argent+propertiesData[global.position][2];
             }
         }
         else if (propertiesData[player.human.position][2]==(-1))
@@ -76,6 +80,7 @@ Data_joueur take_rents(int propertiesData[40][4], Data_joueur player, joueur glo
             player.human.argent=player.human.argent-(player.human.dice * 4);
         }
     }
+    player.global = global;
     return player;
 }
 
@@ -121,6 +126,14 @@ Data_joueur achat_prop_bot(int propertiesData[40][4], joueur global, Data_joueur
     }else if(propertiesData[player.global.position][0] == 1)
     {
         player = take_rents(propertiesData, player, global);
+
+        if(global.playerNumber == 1)
+        {
+            player.bot1 = player.global;
+        }else if(global.playerNumber == 2)
+        {
+            player.bot2 = player.global;
+        }
     }
 
     return player;

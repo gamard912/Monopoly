@@ -25,15 +25,18 @@ joueur position_bot(joueur global, lancer des_global)
     pre_position = global .position - somme_des;
     tours_joueur = global .tours_de_plateau;
 
-    if(global .position > 39)
+    if(global.position > 39)
     {
-        global .position = (pre_position + somme_des)-40;
-        global .argent += 200;
+        global.position = (pre_position + somme_des)-40;
+        if(global.position != 0)
+        {
+            global.argent += 200;
+        }else if(global.position == 0 && tours_joueur != 0)
+        {
+            global.argent += 400;
+        }
+
         tours_joueur++;
-    }
-    if(global .position == 0 && tours_joueur != 0)
-    {
-        global .argent += 400;
     }
 
     global .tours_de_plateau = tours_joueur;

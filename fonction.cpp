@@ -83,6 +83,7 @@ int game_master(Data_joueur player, int propertiesData[40][4])
         player.human.argent = 1500;
         player.bot1.argent = 1500;
         player.bot2.argent = 1500;
+        player.global.argent = 1500;
 
         player.human.playerNumber = 3;
         player.bot1.playerNumber = 1;
@@ -97,6 +98,7 @@ int game_master(Data_joueur player, int propertiesData[40][4])
         player = elim_bot1(player,propertiesData);
         player = elim_bot2(player, propertiesData);
 
+
     }while(player.human.elimination == 0);
 
 
@@ -108,13 +110,16 @@ Data_joueur pas_elim(Data_joueur player, int propertiesData[40][4])
 
     while(player.human.elimination == 0 && player.bot1.elimination == 0 && player.bot2.elimination == 0)
     {
-        player.human = gestion_joueur(propertiesData,player);
+        player = gestion_joueur(propertiesData,player);
 
         cout << "*******************************BOT 1 **********************************" <<endl;
-        player.bot1 = gestion_bot(propertiesData ,player , player.bot1, 1);
+        player = gestion_bot(propertiesData ,player , player.bot1, 1);
+        player.bot1 = player.global;
+
 
         cout << "*******************************BOT 2 **********************************" <<endl;
-        player.bot2 = gestion_bot(propertiesData, player ,player.bot2, 2);
+        player = gestion_bot(propertiesData, player ,player.bot2, 2);
+        player.bot2 = player.global;
 
         player.human.elimination = verif_fin_de_partie(propertiesData,player.human);
         player.bot1.elimination = verif_fin_de_partie(propertiesData,player.bot1);
@@ -132,11 +137,11 @@ Data_joueur elim_bot1(Data_joueur player,  int propertiesData[40][4])
     }
     while (player.human.elimination == 0 && player.bot1.elimination == 1 && player.bot2.elimination == 0) {
 
-        player.human = gestion_joueur(propertiesData, player);
+        player = gestion_joueur(propertiesData, player);
 
         cout << "*******************************BOT 2 **********************************" <<endl;
-        player.bot2 = gestion_bot(propertiesData, player ,player.bot2, 2);
-
+        player = gestion_bot(propertiesData, player ,player.bot2, 2);
+        player.bot2 = player.global;
 
         player.human.elimination = verif_fin_de_partie(propertiesData,player.human);
         player.bot2.elimination = verif_fin_de_partie(propertiesData,player.bot2);
@@ -153,10 +158,11 @@ Data_joueur elim_bot2(Data_joueur player,  int propertiesData[40][4])
     while (player.human.elimination == 0 && player.bot1.elimination == 0 && player.bot2.elimination == 1) {
 
 
-        player.human = gestion_joueur(propertiesData, player);
+        player = gestion_joueur(propertiesData, player);
 
         cout << "*******************************BOT 1 **********************************" <<endl;
-        player.bot1 = gestion_bot(propertiesData, player ,player.bot1, 1);
+        player = gestion_bot(propertiesData, player ,player.bot1, 1);
+        player.bot1 = player.global;
 
         player.human.elimination = verif_fin_de_partie(propertiesData,player.human);
         player.bot1.elimination = verif_fin_de_partie(propertiesData,player.bot1);
@@ -165,12 +171,12 @@ Data_joueur elim_bot2(Data_joueur player,  int propertiesData[40][4])
     return player;
 }
 
-joueur gestion_joueur(int propertiesData[40][4],Data_joueur player)
+Data_joueur gestion_joueur(int propertiesData[40][4],Data_joueur player)
 {
-
     player.human = Affichage_joueur(player);
     print_playboard(player.human, player.bot1, player.bot2);
     player = achat_prop_joueur(propertiesData, player);
+
     player.human.elimination = verif_fin_de_partie(propertiesData,player.human);
 
     saisie_passe(propertiesData, player.human);
@@ -178,10 +184,10 @@ joueur gestion_joueur(int propertiesData[40][4],Data_joueur player)
 
 
 
-    return player.human;
+    return player;
 }
 
-joueur gestion_bot(int propertiesData[40][4], Data_joueur player, joueur global, int bot)
+Data_joueur gestion_bot(int propertiesData[40][4], Data_joueur player, joueur global, int bot)
 {
     static int appel = 0;
     player.global = global;
@@ -202,14 +208,16 @@ joueur gestion_bot(int propertiesData[40][4], Data_joueur player, joueur global,
     saisie_passe(propertiesData, player.global);
     clear_screen();
 
-    return player.global;
+    return player;
 }
 
 void Affichage_elim_bot(joueur global)
 {
     cout << "-----------------------------------------------------------------------------------------"<< endl;
+    cout << endl;
     cout << "                                        Le Bot Numero " << global.playerNumber << "                                       "<<endl;
     cout << "                    HeHe plus qu'un bot a eliminer et vous gagner la game!!!             "<< endl;
+    cout << endl;
     cout << "-----------------------------------------------------------------------------------------"<< endl;
 
 }
