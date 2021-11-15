@@ -97,12 +97,45 @@ int game_master(Data_joueur player, int propertiesData[40][4])
         player = pas_elim(player, propertiesData);
         player = elim_bot1(player,propertiesData);
         player = elim_bot2(player, propertiesData);
-
+        Affichage_statut_joueur(propertiesData, player);
 
     }while(player.human.elimination == 0);
-
+    Affichage_statut_joueur(propertiesData, player);
 
     return 0;
+}
+
+void Affichage_statut_joueur(int propertiesData[40][4] ,Data_joueur player)
+{
+    player.human.elimination = verif_fin_de_partie(propertiesData,player.human);
+    if(player.human.elimination == 1)
+    {
+        cout << "  _______  _______  _______  _______    _______           _______  _______  " << endl;
+        cout << " (  ____ \\(  ___  )(       )(  ____ \\  (  ___  )|\\     /|(  ____ \\(  ____ ) " << endl;
+        cout << " | (    \\/| (   ) || () () || (    \\/  | (   ) || )   ( || (    \\/| (    )| " << endl;
+        cout << " | |      | (___) || || || || (__      | |   | || |   | || (__    | (____)| " << endl;
+        cout << " | | ____ |  ___  || |(_)| ||  __)     | |   | |( (   ) )|  __)   |     __) " << endl;
+        cout << " | | \\_  )| (   ) || |   | || (        | |   | | \\ \\_/ / | (      | (\\ (    " << endl;
+        cout << " | (___) || )   ( || )   ( || (____/\\  | (___) |  \\   /  | (____/\\| ) \\ \\__ " << endl;
+        cout << " (_______)|/     \\||/     \\|(_______/  (_______)   \\_/   (_______/|/   \\__/ " << endl;
+
+    }
+
+
+    else if(player.human.elimination == 0 && player.bot1.elimination == 1 && player.bot2.elimination == 1)
+    {
+        cout << "          _______                     _________ _       " << endl;
+        cout << "|\\     /|(  ___  )|\\     /|  |\\     /|\\__   __/( (    /|" << endl;
+        cout << "( \\   / )| (   ) || )   ( |  | )   ( |   ) (   |  \\  ( |" << endl;
+        cout << " \\ (_) / | |   | || |   | |  | | _ | |   | |   |   \\ | |" << endl;
+        cout << "  \\   /  | |   | || |   | |  | |( )| |   | |   | (\\ \\) |" << endl;
+        cout << "   ) (   | |   | || |   | |  | || || |   | |   | | \\   |" << endl;
+        cout << "   | |   | (___) || (___) |  | () () |___) (___| )  \\  |" << endl;
+        cout << "   \\_/   (_______)(_______)  (_______)\\_______/|/    )_)" << endl;
+    }
+
+
+
 }
 
 Data_joueur pas_elim(Data_joueur player, int propertiesData[40][4])

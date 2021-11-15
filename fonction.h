@@ -17,8 +17,7 @@ Data_joueur elim_bot2(Data_joueur player, int propertiesData[40][4]);
 Data_joueur elim_bot1(Data_joueur player, int propertiesData[40][4]);
 Data_joueur pas_elim(Data_joueur player, int propertiesData[40][4]);
 int game_master(Data_joueur player, int propertiesData[40][4]);
-
-
+void Affichage_statut_joueur(int propertiesData[40][4] ,Data_joueur player);
 
 int saisie_passe(int propertiesData[40][4],joueur);
 

@@ -59,6 +59,7 @@ Data_joueur take_rents(int propertiesData[40][4], Data_joueur player, joueur glo
         if (propertiesData[global.position][2] > 0)
         {
             global.argent = global.argent - propertiesData[global.position][2];
+
             if(propertiesData[global.position][3] == player.bot1.playerNumber)
             {
                 cout << "le bot 1 recoit donc : " << propertiesData[global.position][2] <<"e " <<endl;
