@@ -1,31 +1,32 @@
-#include "struct.h"
-#include <iostream>
-#include "joueur.h"
-#include "properties.h"
-
-
-using namespace std;
 /*************************************************************
 * Nom ............ : joueur.cpp
 * Rôle ........... :
-* Auteur ......... : prénom.nom
+* Auteur ......... : Zoubir.BENNANE
 * Date création .. : 9/11/2021
 * Version/Màj .... :
 * Licence ........ : GPLv4
 *************************************************************/
 
+#include "struct.h"
+#include <iostream>
+#include "joueur.h"
+#include "properties.h"
+
+using namespace std;
+
 // ******************************* Tout ce qui concerne le joueur *************************************
 char saisie_joueur()
 {
     char saisie = 0;
-    cout << "Pour lancer les des tapez 'l'" << endl;
+    cout << "Pour lancer les dés tapez 'l' !" << endl;
     cin >> saisie;                                          // on recupere saisie afin de savoir si le joueur veut lancer les dés ou autres choses
 
     if(saisie != 'l')
     {
         cout << "Erreur lors de la saisie" << endl;
         saisie_joueur();
-    }else
+    }
+    else
     {
         return saisie;
     }
@@ -60,7 +61,8 @@ joueur gestion_position(Data_joueur player)
         if(position != 0)
         {
             player.human.argent += 200;
-        }else if(position == 0 && tours_joueur != 0)
+        }
+        else if(position == 0 && tours_joueur != 0)
         {
             player.human.argent += 400;
         }
@@ -79,13 +81,13 @@ joueur gestion_position(Data_joueur player)
 
 joueur affichage_Nouvelle_position_joueur(Data_joueur player)
 {
-    player.des_human =init_random_des_du_joueur(player);                 //on recupere la valeur des dés
-    player.human = gestion_position(player);              // on stock la position afin de l'afficher
+    player.des_human = init_random_des_du_joueur(player);                 //on recupere la valeur des dés
+    player.human = gestion_position(player);              // on stocke la position afin de l'afficher
 
     cout << endl;   // un peu d'affichage
     cout << "Vous avez fait : " << player.des_human.des1 << " et " << player.des_human.des2 << endl;
-    cout << "Vous passer a la case : " << player.human.position << endl;
-    cout << "Vous avez maintenant : " << player.human.argent << "e "<< endl;
+    cout << "Vous passez à la case : " << player.human.position << endl;
+    cout << "Vous avez maintenant : " << player.human.argent << "€ "<< endl;
 
     return player.human;
 
@@ -98,9 +100,9 @@ joueur Affichage_joueur(Data_joueur player)
 
     //un peu d'affichage
     cout << "******************************* JOUEUR **********************************" <<endl;
-    cout << "Joueur, a vous de jouer ..." << endl;
-    cout << "vous avez : " << player.human.argent << "e" <<endl;
-    cout << "vous etes a la case : " << player.human.position  << endl;
+    cout << "Joueur, à vous de jouer ..." << endl;
+    cout << "Vous avez : " << player.human.argent << "€" <<endl;
+    cout << "Vous etes à la case : " << player.human.position  << endl;
 
     //on vérifie la saisie que l'on a recuperer dans une variable
     saisie_joueur();

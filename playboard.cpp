@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void print_playboard(joueur human, joueur bot1, joueur bot2){
+void print_playboard(joueur human, joueur bot1, joueur bot2){//Master playboard function
     cout << "******************************* PLATEAU DE JEU **********************************"<<endl;
     print_playerPosition(human,0);
     print_playerPosition(bot1,1);
@@ -20,7 +20,7 @@ void print_playerPosition(joueur global, int playerIndex){
     for (int i=0;i<40;i++){
         cout << " ";
         if (i == global.position){
-            switch (playerIndex){
+            switch (playerIndex){//Switch a letter for each player
                 case 0:
                     cout << "J ";
                     break;
