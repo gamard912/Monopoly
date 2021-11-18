@@ -11,5 +11,5 @@ void clear_screen()//Clear all screen
 
 void setup_screen()//Resize screen
 {
-    cout << "\e[8;150;175t";
+    cout << "\e[8;150;175t" ;
 }

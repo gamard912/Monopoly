@@ -35,6 +35,7 @@ char saisie_menu_debut()
 {
     char choix_debut = 0;
     cout << "Bienvenue sur le Monopoly by Ezio & Zoubir" << endl;
+    cout << "Veuillez mettre la fenetre en pleine ecran " << endl;
     cout << "Pour lancer la partie tapez 'l' et pour afficher les règles 'r'" << endl;
     cin >> choix_debut;
 
