@@ -6,7 +6,7 @@ using namespace std;
 
 void clear_screen()//Clear all screen
 {
-    cout << "\x1B[2J\x1B[H" << "\n";
+    cout << "\x1B[2J\x1B[H";
 }
 
 void setup_screen()//Resize screen
