@@ -24,4 +24,6 @@ lancer init_random_des_du_joueur(Data_joueur player);//Roll dices
 joueur gestion_position(Data_joueur player);//Position management
 
 
+
+
 #endif // JOUEUR_H

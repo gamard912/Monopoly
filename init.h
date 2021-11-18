@@ -4,6 +4,6 @@
 
 void setup_screen();
 void clear_screen();
-void affichage();
+Data_joueur init_valeur_joueur(Data_joueur player);
 
 #endif // INIT_H

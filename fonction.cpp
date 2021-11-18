@@ -83,15 +83,7 @@ int game_master(Data_joueur player, int propertiesData[40][4])
 {
     if(player.human.tours_de_plateau == 0)
     {
-        //Define each player money to the initial Value
-        player.human.argent = initialMoney;
-        player.bot1.argent = initialMoney;
-        player.bot2.argent = initialMoney;
-
-        //Define the player index for each player
-        player.human.playerNumber = 0;
-        player.bot1.playerNumber = 1;
-        player.bot2.playerNumber = 2;
+        player = init_valeur_joueur(player);
 
         saisie_menu_debut();//print initial menu
         clear_screen();//clear all screen

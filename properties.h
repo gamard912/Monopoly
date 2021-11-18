@@ -17,4 +17,10 @@ Data_joueur achat_prop_joueur(int propertiesData[40][4], Data_joueur player);//P
 
 Data_joueur achat_prop_bot(int propertiesData[40][4], joueur global, Data_joueur player);//Purchase property for bot player
 
+Data_joueur verification_et_gestion_de_prop_joueur(int propertiesData[40][4],Data_joueur player);
+
+Data_joueur verification_et_gestion_de_prop_bot(int propertiesData[40][4],Data_joueur player);
+
+joueur ajout_sous_loyer(int propertiesData[40][4], joueur global, joueur);
+
 #endif // PROPERTIES_H

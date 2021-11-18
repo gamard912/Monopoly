@@ -7,18 +7,19 @@ using namespace std;
 typedef struct{
 
     int argent;
-    int position = 0;  // case de depart
-    int tours_de_plateau = 0;
+    int position;  // case de depart
+    int tours_de_plateau;
     int dice;
-    bool elimination = 0;
+    bool elimination;
     int playerNumber;
+    string achat_prop;
 
 }joueur;
 
 typedef struct{
 
-    int des1 = 0;
-    int des2 =0;
+    int des1;
+    int des2;
 
 } lancer ;
 

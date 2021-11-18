@@ -6,34 +6,12 @@ using namespace std;
 
 Data_joueur achat_prop_joueur(int propertiesData[40][4], Data_joueur player)
 {
-    char choix = 0;
+
     if(propertiesData[player.human.position][0] == 0 )
     {
         cout << endl << propNames[player.human.position] << " est disponible" << endl;
         cout << "Le prix pour l'achat de la propriété est de :" << propertiesData[player.human.position][1] <<"€" << endl;
-        if(propertiesData[player.human.position][1] <= player.human.argent)
-        {
-            cout << "Tapez 'a' pour acheter cette propriété et 'n' pour refuser :" << endl;
-            cin >> choix;
-            if(choix == 'a')
-            {
-                player.human.argent -=  propertiesData[player.human.position][1];
-                propertiesData[player.human.position][0] = 1;//Write this property is not available
-                propertiesData[player.human.position][3] = player.human.playerNumber;//Write in the properties data at witch player belongs the property
-                cout << "Vous avez bien acheté cette propriété !" << endl;
-
-            }
-            else if(choix == 110){
-                return player;
-            }
-            else{
-                cout << "Erreur lors de la saisie" <<endl;
-                return achat_prop_joueur(propertiesData, player);
-            }
-        }
-        else{
-            cout << "Vous n'avez pas les fonds nécessaire afin d'acheter la propriété" << endl;
-        }
+        player = verification_et_gestion_de_prop_joueur(propertiesData, player);
 
     }
     else if(propertiesData[player.human.position][0] >= 2)
@@ -52,6 +30,36 @@ Data_joueur achat_prop_joueur(int propertiesData[40][4], Data_joueur player)
     return player;
 }
 
+Data_joueur verification_et_gestion_de_prop_joueur(int propertiesData[40][4],Data_joueur player)
+{
+    char choix = 0;
+    if(propertiesData[player.human.position][1] <= player.human.argent)
+    {
+        cout << "Tapez 'a' pour acheter cette propriété et 'n' pour refuser :" << endl;
+        cin >> choix;
+        if(choix == 'a')
+        {
+            player.human.argent -=  propertiesData[player.human.position][1];
+            propertiesData[player.human.position][0] = 1;//Write this property is not available
+            propertiesData[player.human.position][3] = player.human.playerNumber;//Write in the properties data at witch player belongs the property
+            cout << "Vous avez bien acheté cette propriété !" << endl;
+
+        }
+        else if(choix == 110){
+            return player;
+        }
+        else{
+            cout << "Erreur lors de la saisie" <<endl;
+            return achat_prop_joueur(propertiesData, player);
+        }
+    }
+    else{
+        cout << "Vous n'avez pas les fonds nécessaire afin d'acheter la propriété" << endl;
+    }
+    return player;
+}
+
+
 Data_joueur take_rents(int propertiesData[40][4], Data_joueur player, joueur global)
 {
     if ((propertiesData[global.position][3] == (-1)) || (propertiesData[global.position][3]==0) || (propertiesData[global.position][2]==0))
@@ -65,23 +73,10 @@ Data_joueur take_rents(int propertiesData[40][4], Data_joueur player, joueur glo
         {
             global.argent = global.argent - propertiesData[global.position][2];
 
-            if(propertiesData[global.position][3] == player.bot1.playerNumber)
-            {
-                cout << "Le bot 1 recoit donc : " << propertiesData[global.position][2] <<"€ " <<endl;
-                player.bot1.argent = player.bot1.argent+propertiesData[global.position][2];
+            player.human = ajout_sous_loyer(propertiesData, global, player.human);
+            player.bot1 = ajout_sous_loyer(propertiesData, global, player.bot1);
+            player.bot2 = ajout_sous_loyer(propertiesData, global, player.bot2);
 
-            }
-            else if(propertiesData[global.position][3] == player.bot2.playerNumber)
-            {
-                cout << "Le bot 2 recoit donc : " << propertiesData[global.position][2] <<"€ " <<endl;
-                player.bot2.argent = player.bot2.argent+propertiesData[global.position][2];
-
-            }
-            else if(propertiesData[global.position][3] == player.human.playerNumber)
-            {
-                cout << "La propiété est deja achetée vous gagner donc : " << propertiesData[global.position][2] <<"€ " <<endl;
-                player.human.argent = player.human.argent+propertiesData[global.position][2];
-            }
         }
         else if (propertiesData[player.human.position][2]==(-1))
         {
@@ -92,6 +87,17 @@ Data_joueur take_rents(int propertiesData[40][4], Data_joueur player, joueur glo
     return player;
 }
 
+
+joueur ajout_sous_loyer(int propertiesData[40][4], joueur global, joueur ajout_sous)
+{
+    if(propertiesData[global.position][3] == ajout_sous.playerNumber)
+    {
+        cout << ajout_sous.achat_prop << propertiesData[global.position][2] <<"€ " <<endl;
+        ajout_sous.argent = ajout_sous.argent+propertiesData[global.position][2];
+
+    }
+    return ajout_sous;
+}
 
 void affichage_prop(int propertiesData[40][4],joueur global)
 {
@@ -117,16 +123,8 @@ Data_joueur achat_prop_bot(int propertiesData[40][4], joueur global, Data_joueur
     {
         cout << endl << propNames[player.global.position] << " est disponible" << endl;
         cout << "Le prix pour l'achat de la propriete est de :" << propertiesData[player.global.position][1] << endl;
-        if(propertiesData[player.global.position][1] <= player.global.argent)
-        {
-                player.global.argent -=  propertiesData[player.global.position][1];
-                propertiesData[player.global.position][0] = 1;
-                propertiesData[player.global.position][3] = player.global.playerNumber;
-                cout << "Vous avez bien acheté cette propriété" << endl;
-        }
-        else{
-            cout << "Le bot n'a pas les fonds nécessaires afin d'acheter cette propriété" << endl;
-        }
+
+        player = verification_et_gestion_de_prop_bot(propertiesData, player);
 
     }
     else if(propertiesData[player.global.position][0] >= 2)
@@ -148,5 +146,20 @@ Data_joueur achat_prop_bot(int propertiesData[40][4], joueur global, Data_joueur
         }
     }
 
+    return player;
+}
+
+Data_joueur verification_et_gestion_de_prop_bot(int propertiesData[40][4],Data_joueur player)
+{
+    if(propertiesData[player.global.position][1] <= player.global.argent)
+    {
+            player.global.argent -=  propertiesData[player.global.position][1];
+            propertiesData[player.global.position][0] = 1;
+            propertiesData[player.global.position][3] = player.global.playerNumber;
+            cout << "Vous avez bien acheté cette propriété" << endl;
+    }
+    else{
+        cout << "Le bot n'a pas les fonds nécessaires afin d'acheter cette propriété" << endl;
+    }
     return player;
 }
