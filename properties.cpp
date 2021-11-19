@@ -6,7 +6,6 @@ using namespace std;
 
 Data_joueur achat_prop_joueur(int propertiesData[40][4], Data_joueur player)
 {
-
     if(propertiesData[player.human.position][0] == 0 )
     {
         cout << endl << propNames[player.human.position] << " est disponible" << endl;

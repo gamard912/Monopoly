@@ -20,7 +20,7 @@ using namespace std;
 // *********************************** General Functions *************************************
 
 
-void affichage_regles()
+void affichage_regles(Data_joueur player)
 {
     cout << endl;
     cout << "La partie commence avec 1500€ par joueur" << endl;
@@ -28,10 +28,10 @@ void affichage_regles()
     cout << "Deux joueurs ordinateurs vont jouer avec vous." << endl;
     cout << "Pour gagner la partie les deux autres joueurs ne doivent plus avoir d'argent." << endl<< endl;
 
-    saisie_menu_debut();
+    saisie_menu_debut(player);
 }
 
-char saisie_menu_debut()
+Data_joueur saisie_menu_debut(Data_joueur player)
 {
     char choix_debut = 0;
     cout << "Bienvenue sur le Monopoly by Ezio & Zoubir" << endl;
@@ -43,15 +43,20 @@ char saisie_menu_debut()
     if(choix_debut != 'l' && choix_debut != 'r')
     {
         cout << "Erreur lors de la saisie" << endl;
-        return  saisie_menu_debut();
+        if(choix_debut=='d'){
+            player.bot1.argent=100;
+            player.bot2.argent=100;
+            cout << "Debug mod ok"<<endl;
+        }
+        return player=saisie_menu_debut(player);
     }
     else if(choix_debut == 'l'){
-        return choix_debut;
+        return player;
     }
     else{
-        affichage_regles();
+        affichage_regles(player);
     }
-    return 0;
+    return player;
 }
 
 
@@ -81,11 +86,12 @@ return saisie_passe(propertiesData, global);
 
 int game_master(Data_joueur player, int propertiesData[40][4])
 {
+    bool flagElim = 0;
     if(player.human.tours_de_plateau == 0)
     {
         player = init_valeur_joueur(player);
 
-        saisie_menu_debut();//print initial menu
+        player=saisie_menu_debut(player);//print initial menu
         clear_screen();//clear all screen
     }
     do{
@@ -93,16 +99,13 @@ int game_master(Data_joueur player, int propertiesData[40][4])
         player = pas_elim(player, propertiesData);//Call not eliminate function
         player = elim_bot1(player,propertiesData);//Call bot1 eliminatation function
         player = elim_bot2(player, propertiesData);//Same for bot2
-        Affichage_statut_joueur(propertiesData, player);//Check if loose or not
+        flagElim=Affichage_statut_joueur(propertiesData, player, flagElim);//If get out of loop, player has win or loose, so printing his statut
 
-    }while(player.human.elimination == 0);
-    //If get out of loop, player has win or loose, so printing his statut
-    Affichage_statut_joueur(propertiesData, player);
-
+    }while(player.human.elimination == 0 && !flagElim);
     return 0;
 }
 
-void Affichage_statut_joueur(int propertiesData[40][4] ,Data_joueur player)
+bool Affichage_statut_joueur(int propertiesData[40][4] ,Data_joueur player, bool flagElim)
 {
     player.human.elimination = verif_fin_de_partie(propertiesData,player.human);
     if(player.human.elimination == 1)
@@ -115,7 +118,7 @@ void Affichage_statut_joueur(int propertiesData[40][4] ,Data_joueur player)
         cout << " | | \\_  )| (   ) || |   | || (        | |   | | \\ \\_/ / | (      | (\\ (    " << endl;
         cout << " | (___) || )   ( || )   ( || (____/\\  | (___) |  \\   /  | (____/\\| ) \\ \\__ " << endl;
         cout << " (_______)|/     \\||/     \\|(_______/  (_______)   \\_/   (_______/|/   \\__/ " << endl;
-
+        flagElim=1;
     }
 
 //call each player management function
@@ -129,10 +132,11 @@ void Affichage_statut_joueur(int propertiesData[40][4] ,Data_joueur player)
         cout << "   ) (   | |   | || |   | |  | || || |   | |   | | \\   |" << endl;
         cout << "   | |   | (___) || (___) |  | () () |___) (___| )  \\  |" << endl;
         cout << "   \\_/   (_______)(_______)  (_______)\\_______/|/    )_)" << endl;
+        flagElim=1;
     }
 
 //Define each player money to the initial Value
-
+    return flagElim;
 }
 
 Data_joueur pas_elim(Data_joueur player, int propertiesData[40][4])

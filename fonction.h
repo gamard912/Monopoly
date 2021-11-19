@@ -6,9 +6,9 @@ const int initialMoney=1500;
 
 
 // ******************************* Generals Functions *************************************
-char saisie_menu_debut(); //print the intial menu
+Data_joueur saisie_menu_debut(Data_joueur); //print the intial menu
 
-void affichage_regles(); //print game's rules
+void affichage_regles(Data_joueur); //print game's rules
 
 bool verif_fin_de_partie(int propertiesData[40][4],joueur); //Check if the game is over or not
 
@@ -25,7 +25,7 @@ Data_joueur pas_elim(Data_joueur player, int propertiesData[40][4]); //If the pl
 
 int game_master(Data_joueur player, int propertiesData[40][4]); //Master function of the game
 
-void Affichage_statut_joueur(int propertiesData[40][4] ,Data_joueur player); //Print the player statut (game over or win)
+bool Affichage_statut_joueur(int propertiesData[40][4] ,Data_joueur player, bool flagElim); //Print the player statut (game over or win)
 
 int saisie_passe(int propertiesData[40][4],joueur);//To let the player choice between skip his turn or see his properties
 
